@@ -8,12 +8,20 @@ import com.datumbox.framework.applications.nlp.TextClassifier;
 import com.datumbox.framework.common.Configuration;
 import com.datumbox.framework.core.machinelearning.MLBuilder;
 
-@Path("classify")
+@Path("/")
 public class Classify {
+
+    @GET
+    @Produces( MediaType.TEXT_PLAIN)
+    @Path("status")
+    public String status(){
+        return "Classification service is up!";
+    }
 
     @POST
     @Produces (MediaType.APPLICATION_JSON)
     @Consumes("text/plain")
+    @Path("classify")
     public Response getCategory(String inputText){
         JSONObject result = new JSONObject();
         result.put("status","1");
